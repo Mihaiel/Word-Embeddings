@@ -33,6 +33,15 @@ def main():
     for pair in pairs[:10]:
         print(pair, "->", id_to_word[pair[0]], id_to_word[pair[1]])
 
+    # Part 3 - Embedding model
+    model = EmbeddingModel(vocab_size=len(word_to_id), embedding_dim=5)
+
+    print("Vector for 'king':")
+    print(model.get_vector(word_to_id["king"]))
+
+    print("\nVector for 'queen':")
+    print(model.get_vector(word_to_id["queen"]))
+
 
 if __name__ == "__main__":
     main()
