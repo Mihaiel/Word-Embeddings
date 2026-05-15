@@ -32,6 +32,16 @@ class TextPreprocessor:
 
         return word_to_id, id_to_word
 
+    # Count how many times each word appears in the corpus.
+    # Returned as a dictionary mapping word_id to occurrence count.
+    # Used by §4.9 to drive frequency-biased negative sampling.
+    def count_words(self, tokenized_sentences, word_to_id):
+        word_counts = {wid: 0 for wid in word_to_id.values()}
+        for sentence in tokenized_sentences:
+            for word in sentence:
+                word_counts[word_to_id[word]] += 1
+        return word_counts
+
     # Turn the same words into the same numbers
     def encode_sentences(self, tokenized_sentences, word_to_id):
         encoded_sentences = []
@@ -55,5 +65,6 @@ class TextPreprocessor:
 
         word_to_id, id_to_word = self.build_vocab(tokenized_sentences)
         encoded_sentences = self.encode_sentences(tokenized_sentences, word_to_id)
+        word_counts = self.count_words(tokenized_sentences, word_to_id)
 
-        return tokenized_sentences, word_to_id, id_to_word, encoded_sentences
+        return tokenized_sentences, word_to_id, id_to_word, encoded_sentences, word_counts

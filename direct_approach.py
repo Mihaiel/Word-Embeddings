@@ -54,7 +54,7 @@ with open("corpus.txt") as f:
     text = f.read()
 
 preprocessor = TextPreprocessor()
-_, word_to_id, id_to_word, encoded = preprocessor.preprocess(text)
+_, word_to_id, id_to_word, encoded, _ = preprocessor.preprocess(text)
 print("Vocabulary size:", len(word_to_id))
 
 

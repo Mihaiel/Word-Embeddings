@@ -11,7 +11,7 @@ def main():
         text = file.read()
 
     preprocessor = TextPreprocessor()
-    tokenized_sentences, word_to_id, id_to_word, encoded_sentences = preprocessor.preprocess(text)
+    tokenized_sentences, word_to_id, id_to_word, encoded_sentences, _ = preprocessor.preprocess(text)
 
     print("First 3 sentences:")
     for sentence in tokenized_sentences[:3]:
